@@ -53,13 +53,13 @@ public class AnnuityPayment {
    */
 
   public static void main(String[] args) {
-    double monthlyPercent = 8.9;//(percent % годовых) = ставка по кредиту
+    double annualPercent = 8.9;//(percent % годовых) = ставка по кредиту
     double totalCreditTime = 60;//(months месяцев) = срок кредитования
     double creditSum = 57000;//(total евро) = сумма кредита
 
-    double monthlyInsertRate = monthlyInsertRateCalc(monthlyPercent);
-    double annuityCoefficient = annuityCoefficientCalc(monthlyInsertRate, totalCreditTime);
-    double monthlyAnnuityPayment = annuityPaymentCalc(monthlyInsertRate, annuityCoefficient,
+    double monthlyPercentRate = monthlyPercentRateCalc(annualPercent);
+    double annuityCoefficient = annuityCoefficientCalc(monthlyPercentRate, totalCreditTime);
+    double monthlyAnnuityPayment = annuityPaymentCalc(monthlyPercentRate, annuityCoefficient,
         creditSum);
 
     System.out.print("Ежемесячный платёж: " + monthlyAnnuityPayment);
@@ -71,12 +71,17 @@ public class AnnuityPayment {
   }
 
   public static double annuityCoefficientCalc(double monthlyPercentRate, double totalCreditTime) {
-
+    double decimalPercent = monthlyPercentRate/100;
+    double annuityCoefficient = (decimalPercent * Math.pow(1 + decimalPercent, totalCreditTime)) /
+        (Math.pow(1 + decimalPercent, totalCreditTime) - 1);
+    System.out.println("Аннуитетный коэффициент: " + annuityCoefficient);
+    return annuityCoefficient;
   }
 
-  public static double monthlyInsertRateCalc(double monthlyPercent) {
-    double monthlyInsertRate = (Math.pow(1 + monthlyPercent / 100, 1.0/12)-1) * 100;
-    return monthlyInsertRate;
+  public static double monthlyPercentRateCalc(double annualPercent) {
+    double monthlyPercentRate = (Math.pow(1 + annualPercent / 100, 1.0/12)-1) * 100;
+    System.out.println("Месячная процентная ставка: " + monthlyPercentRate);
+    return monthlyPercentRate;
   }
 
 
