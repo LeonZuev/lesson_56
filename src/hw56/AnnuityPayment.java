@@ -1,7 +1,5 @@
 package hw56;
 
-import java.util.ArrayList;
-
 public class AnnuityPayment {
   /*
   Задана процентная ставка по кредиту (percent % годовых),
@@ -55,19 +53,25 @@ public class AnnuityPayment {
    */
 
   public static void main(String[] args) {
+    double monthlyPercentRate = 8.9;//(percent % годовых) = ставка по кредиту
+    int totalCreditTime = 60;//(months месяцев) = срок кредитования
+    double creditSum = 57000;//(total евро) = сумма кредита
+    //(root12(1+X/100)-1)*100
+    double monthlyAnnuityPayment = annuityPaymentCalc(monthlyPercentRate,totalCreditTime,creditSum);
+    System.out.print("Ежемесячный платёж: " + monthlyAnnuityPayment);
+  }
+
+  public static double annuityPaymentCalc(double monthlyPercentRate, int totalCreditTime,
+      double creditSum) {
 
   }
 
-  public static int annuityPayment(ArrayList<Integer> coefficient) {
+  public static double annuityCoefficientCalc(double monthlyPercentRate, int totalCreditTime) {
 
   }
 
-  public static int annuityCoefficient(ArrayList<Integer> percents) {
-
-  }
-
-  public static int monthlyPercentPayment(ArrayList<Integer> numbers) {
-
+  public static double monthlyPercentRateCalc(double creditSum) {
+    //(root12(1+X/100)-1)*100
   }
 
 }
