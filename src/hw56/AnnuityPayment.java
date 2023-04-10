@@ -1,5 +1,7 @@
 package hw56;
 
+import java.util.ArrayList;
+
 public class AnnuityPayment {
   /*
   Задана процентная ставка по кредиту (percent % годовых),
@@ -50,7 +52,22 @@ public class AnnuityPayment {
   - рассчитать ежемесячный платёж за кредит
   - рассчитать коэффициент аннуитета
   - рассчитать месячный аннуитет
-
    */
+
+  public static void main(String[] args) {
+
+  }
+
+  public static int annuityPayment(ArrayList<Integer> coefficient) {
+
+  }
+
+  public static int annuityCoefficient(ArrayList<Integer> percents) {
+
+  }
+
+  public static int monthlyPercentPayment(ArrayList<Integer> numbers) {
+
+  }
 
 }
