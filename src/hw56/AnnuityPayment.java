@@ -63,13 +63,14 @@ public class AnnuityPayment {
     double monthlyPayment = monthlyPaymentCalc(creditSum, monthlyPercentRate, totalCreditTime);
     double monthlyAnnuityPayment = annuityPaymentCalc(monthlyPercentRate, annuityCoefficient,
         creditSum);
-    System.out.println("Годовая ставка: " + annualPercent + " %");
+    System.out.println("Годовая процентная ставка: " + annualPercent + " %");
     System.out.println("Срок кредитования: " + (int)totalCreditTime + " месяцев");
     System.out.println("Сумма кредита: " + (int)creditSum + " евро");
-    System.out.printf("Месячная процентная ставка: %.4f%n", monthlyPercentRate);
-    System.out.printf("Аннуитетный коэффициент: %.4f%n", annuityCoefficient);
-    System.out.printf("Аннуитетный платёж: %.4f%n", monthlyAnnuityPayment);
-    System.out.printf("Ежемесячный платёж: %.2f%n", monthlyPayment);
+    System.out.println();
+    System.out.printf("Месячная процентная ставка: %.2f %%%n", monthlyPercentRate);
+    System.out.printf("Аннуитетный коэффициент: %.4f у.е%n", annuityCoefficient);
+    System.out.printf("Аннуитетный платёж: %.4f евро%n", monthlyAnnuityPayment);
+    System.out.printf("Ежемесячный платёж: %.2f евро%n", monthlyPayment);
   }
 
   public static double monthlyPercentRateCalc(double annualPercent) {
