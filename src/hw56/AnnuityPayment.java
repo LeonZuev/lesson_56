@@ -44,7 +44,7 @@ public class AnnuityPayment {
 
   70657 = общий; 13657 = процентная ставка; 57000 = сумма; 60 мес = время
    1011 = 1 мес;     254 = 1 мес;                757 = 1 мес;   1 мес;
-   1180 = 2 мес;     417 = 2 мес;                763 = 2 мес;   2 мес;
+   1180 = 2 мес;     417 = 2 мес;                763 = 2 мес;;  2 мес;
    1180 = 60 мес;      8 = 60мес;               1172 = 60мес;  60 мес;
 
   - рассчитать ежемесячный платёж за кредит
@@ -73,21 +73,18 @@ public class AnnuityPayment {
   }
 
   public static double monthlyPercentRateCalc(double annualPercent) {
-    double monthlyPercentRate = (Math.pow(1 + annualPercent / 100, 1.0 / 12) - 1) * 100;
-    return monthlyPercentRate;
+    return (Math.pow(1 + annualPercent / 100, 1.0 / 12) - 1) * 100;
   }
 
   public static double annuityCoefficientCalc(double monthlyPercentRate, double totalCreditTime) {
     double decimalPercent = monthlyPercentRate / 100.0;//!!!!!!!!!  / 100*
-    double annuityCoefficient = (decimalPercent * Math.pow(1 + decimalPercent, totalCreditTime)) /
+    return (decimalPercent * Math.pow(1 + decimalPercent, totalCreditTime)) /
         (Math.pow(1 + decimalPercent, totalCreditTime) - 1);
-    return annuityCoefficient;
   }
 
   public static double annuityPaymentCalc(double monthlyPercentRate, double annuityCoefficient,
       double creditSum) {
-    double monthlyAnnuityPayment = creditSum * (monthlyPercentRate) * annuityCoefficient;
-    return monthlyAnnuityPayment;
+    return creditSum * (monthlyPercentRate) * annuityCoefficient;
 
   }
 
