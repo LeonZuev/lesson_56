@@ -5,7 +5,7 @@ public class CreditCalculator {
   public static void main(String[] args) {
     double annualPercent = 8.9; // ставка по кредиту в % годовых
     double totalCreditTime = 60; // срок кредитования в месяцах
-    double creditSum = 57000; // сумма кредита в евро
+    double creditSum = 70000; // сумма кредита в евро
 
     double monthlyPercentRate = monthlyPercentRateCalc(annualPercent);
     double annuityCoefficient = annuityCoefficientCalc(monthlyPercentRate, totalCreditTime);
@@ -21,7 +21,6 @@ public class CreditCalculator {
 
   public static double monthlyPercentRateCalc(double annualPercent) {
     double monthlyPercentRate = Math.pow(1 + annualPercent / 100, 1.0 / 12) - 1;
-    System.out.println("Месячная процентная ставка: " + monthlyPercentRate);
     return monthlyPercentRate;
   }
 
@@ -29,14 +28,12 @@ public class CreditCalculator {
     double decimalPercent = monthlyPercentRate;
     double annuityCoefficient = (decimalPercent * Math.pow(1 + decimalPercent, totalCreditTime))
         / (Math.pow(1 + decimalPercent, totalCreditTime) - 1);
-    System.out.println("Аннуитетный коэффициент: " + annuityCoefficient);
     return annuityCoefficient;
   }
 
   public static double annuityPaymentCalc(double monthlyPercentRate, double annuityCoefficient,
       double creditSum) {
     double monthlyAnnuityPayment = creditSum * monthlyPercentRate * annuityCoefficient;
-    System.out.println("Аннуитетный платёж: " + monthlyAnnuityPayment);
     return monthlyAnnuityPayment;
   }
 
@@ -59,7 +56,6 @@ public class CreditCalculator {
       middle = (left + right) / 2;
       monthlyPayment = annuityPaymentCalc(monthlyPercentRate,
           annuityCoefficientCalc(middle, totalCreditTime), creditSum);
-      System.out.println("Monthly payment: " + monthlyPayment);
     }
     return monthlyPayment;
   }

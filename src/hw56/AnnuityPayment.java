@@ -64,26 +64,28 @@ public class AnnuityPayment {
     double monthlyAnnuityPayment = annuityPaymentCalc(monthlyPercentRate, annuityCoefficient,
         creditSum);
 
-
-    System.out.println("Месячная процентная ставка: "+ monthlyPercentRate);
+    System.out.println("Месячная процентная ставка: " + monthlyPercentRate);
     System.out.println("Аннуитетный коэффициент: " + annuityCoefficient);
     System.out.println("Аннуитетный платёж: " + monthlyAnnuityPayment);
     System.out.print("Ежемесячный платёж: " + monthlyPayment);
   }
 
   public static double monthlyPercentRateCalc(double annualPercent) {
-    return (Math.pow(1 + annualPercent / 100, 1.0 / 12) - 1) * 100;
+    double monthlyPercentRate = (Math.pow(1 + annualPercent / 100, 1.0 / 12) - 1) * 100;
+    return monthlyPercentRate;
   }
 
   public static double annuityCoefficientCalc(double monthlyPercentRate, double totalCreditTime) {
-    double decimalPercent = monthlyPercentRate / 100;
-    return (decimalPercent * Math.pow(1 + decimalPercent, totalCreditTime)) /
+    double decimalPercent = monthlyPercentRate /*/ 100.0*/;//!!!!!!!!!  / 100*
+    double annuityCoefficient = (decimalPercent * Math.pow(1 + decimalPercent, totalCreditTime)) /
         (Math.pow(1 + decimalPercent, totalCreditTime) - 1);
+    return annuityCoefficient;
   }
 
   public static double annuityPaymentCalc(double monthlyPercentRate, double annuityCoefficient,
       double creditSum) {
-    return creditSum * (monthlyPercentRate / 100) * annuityCoefficient;
+    double monthlyAnnuityPayment = creditSum * (monthlyPercentRate / 100) * annuityCoefficient;
+    return monthlyAnnuityPayment;
   }
 
   public static double monthlyPaymentCalc(double creditSum, double monthlyPercentRate,
@@ -95,7 +97,7 @@ public class AnnuityPayment {
         annuityCoefficientCalc(middle, totalCreditTime), creditSum);
 
     while (left <= right) {
-      if (Math.abs(monthlyPayment * totalCreditTime - creditSum) < 0.01) {
+      if (Math.abs(monthlyPayment * totalCreditTime - creditSum) < 0.0001) {
         return monthlyPayment;
       } else if (monthlyPayment * totalCreditTime > creditSum) {
         right = middle;
@@ -107,6 +109,5 @@ public class AnnuityPayment {
           annuityCoefficientCalc(middle, totalCreditTime), creditSum);
     }
     return monthlyPayment;
-
   }
 }
