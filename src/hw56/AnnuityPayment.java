@@ -65,8 +65,10 @@ public class AnnuityPayment {
     System.out.print("Ежемесячный платёж: " + monthlyAnnuityPayment);
   }
 
-  public static double annuityPaymentCalc(double monthlyPercentRate, double totalCreditTime,
+  public static double annuityPaymentCalc(double monthlyPercentRate, double annuityCoefficient,
       double creditSum) {
+    double monthlyAnnuityPayment = creditSum * (monthlyPercentRate / 100) * annuityCoefficient;
+    return monthlyAnnuityPayment;
 
   }
 
